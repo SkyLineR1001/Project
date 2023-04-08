@@ -1,31 +1,15 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using AutoScrap.Data;
-using AutoScrap.Models;
-
-
-namespace AutoScrap
+namespace AutoScrapProj
 {
     public class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<AutoScrapContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("AutoScrapContext") ?? throw new InvalidOperationException("Connection string 'AutoScrapContext' not found.")));
-            
-            
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
-
-            using (var scope = app.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-
-                SeedData.Initialize(services);
-            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
