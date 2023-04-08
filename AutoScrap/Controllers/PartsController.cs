@@ -90,7 +90,7 @@ namespace AutoScrap.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Part_Id,Title,ManufactureeDate,System,Price")] Part part)
+        public async Task<IActionResult> Create([Bind("Part_Id,Title,ManufactureeDate,Condition,System,Price")] Part part)
         {
             if (ModelState.IsValid)
             {
@@ -122,7 +122,7 @@ namespace AutoScrap.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Part_Id,Title,ManufactureeDate,System,Price")] Part part)
+        public async Task<IActionResult> Edit(int id, [Bind("Part_Id,Title,ManufactureeDate,Condition,System,Price")] Part part)
         {
             if (id != part.Part_Id)
             {

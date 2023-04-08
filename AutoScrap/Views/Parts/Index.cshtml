@@ -34,6 +34,9 @@
                 @Html.DisplayNameFor(model => model.Parts![0].System)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Parts![0].Condition)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Parts![0].Price)
             </th>
             <th></th>
@@ -52,6 +55,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.System)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Condition)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>

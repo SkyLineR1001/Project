@@ -25,6 +25,7 @@ namespace AutoScrap.Models
                         Title = "Link",
                         ManufactureeDate = DateTime.Parse("1989-2-12"),
                         System = "Suspension",
+                        Condition = "Good",
                         Price = 7.99M
                     },
                     new Part
@@ -32,6 +33,7 @@ namespace AutoScrap.Models
                         Title = "Breaking Disk",
                         ManufactureeDate = DateTime.Parse("1989-2-12"),
                         System = "Breake System",
+                        Condition = "Normal",
                         Price = 8.99M
                     },
                     new Part
@@ -39,6 +41,7 @@ namespace AutoScrap.Models
                         Title = "Joint",
                         ManufactureeDate = DateTime.Parse("1989-2-12"),
                         System = "Suspension",
+                        Condition = "Normal",
                         Price = 9.99M
                     },
                     new Part
@@ -46,6 +49,7 @@ namespace AutoScrap.Models
                         Title = "Gearbox",
                         ManufactureeDate = DateTime.Parse("1989-2-12"),
                         System = "Transmission",
+                        Condition = "Normal",
                         Price = 11.99M
                     }
                 );
