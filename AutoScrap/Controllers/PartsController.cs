@@ -21,7 +21,7 @@ namespace AutoScrap.Controllers
         }
 
         // GET: Parts
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string partSystem, string searchString)
         {
               //return _context.Part != null ? 
               //            View(await _context.Part.ToListAsync()) :
@@ -31,14 +31,33 @@ namespace AutoScrap.Controllers
                 return Problem("Entity set 'AutoScrapContext.Part'  is null.");
               }
 
-                var parts = from p in _context.Part
-                            select p;
-                if (!String.IsNullOrEmpty(searchString))
-                {
-                    parts = parts.Where(s=>s.Title!.Contains(searchString));
-                }
+            //Use LINQ to get list of systems
+            IQueryable<string> systemQuery = from p in _context.Part
+                                             orderby p.System
+                                             select p.System;
 
-            return View(await parts.ToListAsync());
+            var parts = from p in _context.Part
+                        select p;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                parts = parts.Where(s => s.Title!.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(partSystem))
+            {
+                parts = parts.Where(x => x.System == partSystem);
+            }
+
+            var partSystemVM = new PartSystemViewModel
+            {
+                Systems = new SelectList(await systemQuery.Distinct().ToListAsync()),
+                Parts = await parts.ToListAsync()
+            };
+
+            return View(partSystemVM);
+
+
 
         }
 

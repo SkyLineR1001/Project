@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AutoScrap.Models.Part>
+﻿@model AutoScrap.Models.PartSystemViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -10,9 +10,13 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-<form asp-controller="Parts" asp-action="Index">
+<form asp-controller="Parts" asp-action="Index" method="get">
     <p>
-        Title: <input type="text" name="SearchString" />
+        <select asp-for="PatrtSystem" asp-items="Model.Systems">
+            <option value="">All</option>
+        </select>
+
+        Title: <input type="text" asp-for="SearchString" />
         <input type="submit" value="Filter" />
     </p>
 </form>
@@ -21,22 +25,23 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Parts![0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ManufactureeDate)
+                @Html.DisplayNameFor(model => model.Parts![0].ManufactureeDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.System)
+                @Html.DisplayNameFor(model => model.Parts![0].System)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.Parts![0].Price)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Parts!)
+{
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
